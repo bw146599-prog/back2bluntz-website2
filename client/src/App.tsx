@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import BotDashboard from "@/pages/bot-dashboard";
+import SocialAccounts from "@/pages/social-accounts";
 import Login from "@/pages/login";
 import NotFound from "@/pages/not-found";
 import { useAuth } from "@/hooks/useAuth";
@@ -34,6 +35,9 @@ function Router() {
       <Route path="/login" component={Login} />
       <Route path="/bot">
         <ProtectedRoute component={BotDashboard} />
+      </Route>
+      <Route path="/social-accounts">
+        <ProtectedRoute component={SocialAccounts} />
       </Route>
       {/* Fallback to 404 */}
       <Route component={NotFound} />

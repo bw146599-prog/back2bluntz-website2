@@ -28,11 +28,11 @@ export default function SocialMediaSection() {
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h3 className="text-4xl md:text-5xl font-bold text-foreground mb-6" data-testid="social-title">
-            Stay <span className="text-primary">Connected</span>
+          <h3 className="text-4xl md:text-5xl font-bold text-foreground mb-6 animate-fade-in-up animate-text-glow" data-testid="social-title">
+            Stay <span className="text-primary animate-pulse-slow">Connected</span>
           </h3>
-          <div className="w-16 h-1 bg-primary mx-auto mb-8"></div>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed" data-testid="social-description">
+          <div className="w-16 h-1 bg-primary mx-auto mb-8 animate-expand" style={{ animationDelay: '0.3s' }}></div>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '0.6s' }} data-testid="social-description">
             Follow our journey across platforms. Exclusive content and early access await our community.
           </p>
         </div>
@@ -43,14 +43,15 @@ export default function SocialMediaSection() {
             <a 
               key={platform.name}
               href={platform.url} 
-              className="group relative"
+              className="group relative animate-slide-in-up"
+              style={{ animationDelay: `${0.9 + index * 0.1}s` }}
               data-testid={platform.testId}
               target="_blank"
               rel="noopener noreferrer"
             >
               <div className="bg-gradient-to-br from-card to-card/50 border border-border/50 rounded-3xl p-8 text-center transition-all duration-300 hover:border-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20">
-                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
-                  <platform.icon className="text-3xl text-primary group-hover:scale-110 transition-transform" />
+                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors animate-bounce-slow" style={{ animationDelay: `${index * 0.2}s` }}>
+                  <platform.icon className="text-3xl text-primary group-hover:scale-110 transition-transform animate-pulse-glow" style={{ animationDelay: `${index * 0.3}s` }} />
                 </div>
                 <h4 className="text-foreground font-semibold mb-2">{platform.name}</h4>
                 <p className="text-muted-foreground text-sm">Follow us</p>
@@ -63,14 +64,14 @@ export default function SocialMediaSection() {
         </div>
 
         {/* Newsletter Signup */}
-        <div className="bg-gradient-to-br from-card to-card/30 border border-primary/20 rounded-3xl p-10 relative overflow-hidden">
+        <div className="bg-gradient-to-br from-card to-card/30 border border-primary/20 rounded-3xl p-10 relative overflow-hidden animate-fade-in-up" style={{ animationDelay: '1.3s' }}>
           {/* Background Effect */}
-          <div className="absolute top-0 right-0 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl"></div>
+          <div className="absolute top-0 right-0 w-40 h-40 bg-primary/10 rounded-full blur-3xl animate-float-slow"></div>
+          <div className="absolute bottom-0 left-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl animate-float-slow" style={{ animationDelay: '1s' }}></div>
           
           <div className="relative z-10 text-center">
-            <div className="w-20 h-20 bg-primary/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
-              <div className="w-10 h-10 bg-primary rounded-2xl"></div>
+            <div className="w-20 h-20 bg-primary/20 rounded-3xl flex items-center justify-center mx-auto mb-6 animate-bounce-slow">
+              <div className="w-10 h-10 bg-primary rounded-2xl animate-pulse-glow"></div>
             </div>
             
             <h4 className="text-3xl font-bold text-primary mb-4" data-testid="newsletter-title">Get Early Access</h4>

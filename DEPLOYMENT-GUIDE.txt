@@ -1,0 +1,45 @@
+b2bluntz Website - Deployment Guide for Ionos Hosting
+============================================================
+
+Your website is now fully portable and ready for deployment on Ionos hosting!
+
+WHAT'S READY:
+✓ Static website build created in dist/public/
+✓ All assets bundled and optimized
+✓ Removed all Replit-specific dependencies
+✓ Added proper SEO meta tags
+✓ Fixed asset paths for static hosting
+
+DEPLOYMENT PACKAGE:
+- All files needed are in the "dist/public/" folder
+- Deployment archive: b2bluntz-website.tar.gz
+
+FILES INCLUDED:
+- index.html (main page)
+- assets/index-CUVngsQi.js (JavaScript bundle)
+- assets/index-D2gdEXmA.css (CSS styles)
+
+DEPLOYMENT STEPS FOR IONOS:
+
+1. Download the deployment files from the "dist/public/" folder
+2. Upload ALL contents of dist/public/ to your Ionos web root directory (usually public_html or www)
+3. Make sure these files are in the root level:
+   - index.html
+   - assets/ folder with CSS and JS files
+
+IMPORTANT NOTES:
+- This is a single-page static website - no server setup needed
+- All interactive features work client-side (the leaf game, animations)
+- Social media links are placeholder (#) - you'll need to update with real URLs
+- The email signup form logs to console - you'll need to implement backend handling if needed
+
+WEBSITE FEATURES:
+✓ b2bluntz branding with purple theme
+✓ Coming soon messaging  
+✓ Interactive leaf-clicking game
+✓ Social media links (TikTok, Instagram, Snapchat, Telegram)
+✓ Email newsletter signup form
+✓ Mobile responsive design
+✓ Clean, minimalist design without background animations
+
+The website is fully self-contained and will work immediately after uploading to any static hosting provider.

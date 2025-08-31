@@ -5,6 +5,15 @@ import SocialMediaSection from "@/components/social-media-section";
 export default function Home() {
   return (
     <div className="min-h-screen">
+      {/* Smoke Effect Background */}
+      <div className="smoke-effect">
+        <div className="smoke-wisp smoke-wisp-1"></div>
+        <div className="smoke-wisp smoke-wisp-2"></div>
+        <div className="smoke-wisp smoke-wisp-3"></div>
+        <div className="smoke-wisp smoke-wisp-4"></div>
+        <div className="smoke-wisp smoke-wisp-5"></div>
+      </div>
+      
       {/* Main Content */}
       <div className="relative z-10 min-h-screen">
         <HeroSection />

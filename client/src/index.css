@@ -204,6 +204,60 @@
   50% { transform: translateY(-3px); }
 }
 
+@keyframes smokeFloat {
+  0% {
+    transform: translateY(100vh) translateX(0px) scale(0.3);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.4;
+    transform: translateY(50vh) translateX(20px) scale(0.8);
+  }
+  100% {
+    transform: translateY(-10vh) translateX(-20px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes smokeFloat2 {
+  0% {
+    transform: translateY(100vh) translateX(0px) scale(0.2) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.5;
+  }
+  60% {
+    opacity: 0.3;
+    transform: translateY(40vh) translateX(-30px) scale(1) rotate(90deg);
+  }
+  100% {
+    transform: translateY(-20vh) translateX(40px) scale(1.5) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+@keyframes smokeFloat3 {
+  0% {
+    transform: translateY(100vh) translateX(0px) scale(0.4) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  70% {
+    opacity: 0.2;
+    transform: translateY(30vh) translateX(15px) scale(1.1) rotate(-45deg);
+  }
+  100% {
+    transform: translateY(-15vh) translateX(-35px) scale(1.8) rotate(-90deg);
+    opacity: 0;
+  }
+}
+
 /* Animation classes */
 .animate-float {
   animation: float 3s ease-in-out infinite;
@@ -261,6 +315,68 @@
 
 .animate-pulse-slow {
   animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Smoke effect classes */
+.smoke-effect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.smoke-wisp {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, 
+    rgba(157, 78, 221, 0.1) 0%, 
+    rgba(157, 78, 221, 0.05) 30%, 
+    rgba(255, 255, 255, 0.02) 60%, 
+    transparent 100%);
+  filter: blur(15px);
+}
+
+.smoke-wisp-1 {
+  width: 120px;
+  height: 120px;
+  left: 10%;
+  animation: smokeFloat 15s infinite linear;
+  animation-delay: 0s;
+}
+
+.smoke-wisp-2 {
+  width: 80px;
+  height: 80px;
+  left: 30%;
+  animation: smokeFloat2 18s infinite linear;
+  animation-delay: 3s;
+}
+
+.smoke-wisp-3 {
+  width: 100px;
+  height: 100px;
+  left: 60%;
+  animation: smokeFloat3 12s infinite linear;
+  animation-delay: 6s;
+}
+
+.smoke-wisp-4 {
+  width: 90px;
+  height: 90px;
+  left: 80%;
+  animation: smokeFloat 20s infinite linear;
+  animation-delay: 9s;
+}
+
+.smoke-wisp-5 {
+  width: 110px;
+  height: 110px;
+  left: 50%;
+  animation: smokeFloat2 16s infinite linear;
+  animation-delay: 12s;
 }
 
 /* Neon white glow effect for the "2" */

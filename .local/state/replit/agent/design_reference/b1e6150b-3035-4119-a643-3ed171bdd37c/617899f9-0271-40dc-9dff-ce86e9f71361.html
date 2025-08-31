@@ -1,0 +1,481 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - Premium Cannabis Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)",
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "var(--background)",
+                    foreground: "var(--foreground)",
+                    card: {
+                        DEFAULT: "var(--card)",
+                        foreground: "var(--card-foreground)",
+                    },
+                    primary: {
+                        DEFAULT: "var(--primary)",
+                        foreground: "var(--primary-foreground)",
+                    },
+                    secondary: {
+                        DEFAULT: "var(--secondary)",
+                        foreground: "var(--secondary-foreground)",
+                    },
+                    muted: {
+                        DEFAULT: "var(--muted)",
+                        foreground: "var(--muted-foreground)",
+                    },
+                    accent: {
+                        DEFAULT: "var(--accent)",
+                        foreground: "var(--accent-foreground)",
+                    },
+                    border: "var(--border)",
+                    ring: "var(--ring)",
+                },
+                fontFamily: {
+                    sans: ["var(--font-sans)"],
+                },
+                animation: {
+                    'float': 'float 3s ease-in-out infinite',
+                    'glow': 'glow 2s ease-in-out infinite alternate',
+                    'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                }
+            },
+        }
+    };
+    </script>
+    <style>
+        :root {
+            --background: hsl(0 0% 4%);
+            --foreground: hsl(0 0% 98%);
+            --card: hsl(0 0% 10%);
+            --card-foreground: hsl(0 0% 98%);
+            --primary: hsl(284 85% 58%);
+            --primary-foreground: hsl(0 0% 98%);
+            --secondary: hsl(145 30% 35%);
+            --secondary-foreground: hsl(0 0% 98%);
+            --muted: hsl(0 0% 15%);
+            --muted-foreground: hsl(0 0% 65%);
+            --accent: hsl(284 85% 58%);
+            --accent-foreground: hsl(0 0% 98%);
+            --border: hsl(0 0% 20%);
+            --ring: hsl(284 85% 58%);
+            --radius: 0.75rem;
+            --font-sans: 'Inter', system-ui, sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 20px var(--primary); }
+            to { box-shadow: 0 0 30px var(--primary), 0 0 40px var(--primary); }
+        }
+
+        .cannabis-bg {
+            background-image: 
+                linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.85)),
+                url('https://images.unsplash.com/photo-1536964549204-cce9eab227bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .leaf-silhouette {
+            background-image: url('https://images.unsplash.com/photo-1601049676869-702ea24cfd58?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .game-leaf {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .game-leaf:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .collected {
+            animation: collect 0.5s ease-out forwards;
+        }
+
+        @keyframes collect {
+            0% { transform: scale(1) rotate(0deg); opacity: 1; }
+            100% { transform: scale(0) rotate(180deg); opacity: 0; }
+        }
+
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+            filter: drop-shadow(0 10px 20px rgba(157, 78, 221, 0.4));
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-background text-foreground font-sans overflow-x-hidden">
+    <!-- Background Cannabis Pattern -->
+    <div class="fixed inset-0 cannabis-bg"></div>
+    
+    <!-- Floating Cannabis Leaves Background -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden">
+        <!-- Multiple floating cannabis leaf silhouettes -->
+        <div class="absolute top-10 left-10 w-8 h-8 opacity-10 animate-float" style="animation-delay: 0s;">
+            <!-- Cannabis leaf silhouette -->
+            <img src="https://images.unsplash.com/photo-1601049676869-702ea24cfd58?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100" alt="Cannabis leaf" class="w-full h-full object-contain filter invert" />
+        </div>
+        <div class="absolute top-32 right-20 w-6 h-6 opacity-15 animate-float" style="animation-delay: 1s;">
+            <!-- Cannabis leaf silhouette -->
+            <img src="https://images.unsplash.com/photo-1601049676869-702ea24cfd58?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100" alt="Cannabis leaf" class="w-full h-full object-contain filter invert" />
+        </div>
+        <div class="absolute bottom-40 left-1/4 w-10 h-10 opacity-10 animate-float" style="animation-delay: 2s;">
+            <!-- Cannabis leaf silhouette -->
+            <img src="https://images.unsplash.com/photo-1601049676869-702ea24cfd58?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100" alt="Cannabis leaf" class="w-full h-full object-contain filter invert" />
+        </div>
+        <div class="absolute top-1/2 right-10 w-7 h-7 opacity-12 animate-float" style="animation-delay: 0.5s;">
+            <!-- Cannabis leaf silhouette -->
+            <img src="https://images.unsplash.com/photo-1601049676869-702ea24cfd58?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100" alt="Cannabis leaf" class="w-full h-full object-contain filter invert" />
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="relative z-10 min-h-screen">
+        <!-- Hero Section -->
+        <!-- @COMPONENT: HeroSection -->
+        <section class="min-h-screen flex flex-col justify-center items-center text-center px-4">
+            <div class="max-w-4xl mx-auto">
+                <!-- Brand Title -->
+                <h1 class="text-6xl md:text-8xl font-bold text-primary mb-6 animate-glow tracking-tight">
+                    ELEVATION
+                </h1>
+                
+                <!-- Mysterious Tagline -->
+                <p class="text-xl md:text-3xl text-muted-foreground mb-8 font-light tracking-wide">
+                    Something extraordinary is <span class="text-primary font-semibold">growing</span>...
+                </p>
+                
+                <!-- Coming Soon Badge -->
+                <div class="inline-block bg-card border border-border rounded-full px-8 py-4 mb-12">
+                    <span class="text-primary font-semibold text-lg tracking-widest">COMING SOON</span>
+                </div>
+
+                <!-- Teaser Text -->
+                <div class="max-w-2xl mx-auto mb-16">
+                    <p class="text-muted-foreground text-lg leading-relaxed">
+                        Premium cannabis experiences await. Be among the first to discover what lies beyond the ordinary.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: HeroSection -->
+
+        <!-- Interactive Game Section -->
+        <!-- @COMPONENT: InteractiveGame -->
+        <section class="py-20 px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-8">
+                    Test Your Reflexes
+                </h2>
+                <p class="text-muted-foreground text-lg mb-12">
+                    Click the floating leaves before they disappear. How many can you collect?
+                </p>
+                
+                <!-- Game Area -->
+                <div class="bg-card border border-border rounded-2xl p-8 relative overflow-hidden" style="height: 400px;">
+                    <!-- Game Stats -->
+                    <div class="absolute top-4 left-4 z-20">
+                        <div class="bg-muted rounded-lg px-4 py-2">
+                            <span class="text-primary font-bold text-xl" id="score">Score: 0</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Game Instructions -->
+                    <div class="absolute inset-0 flex items-center justify-center z-10" id="gameInstructions">
+                        <div class="text-center">
+                            <p class="text-muted-foreground mb-4">Click the leaves as they appear!</p>
+                            <button onclick="startGame()" class="bg-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
+                                Start Game
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Game Area -->
+                    <div id="gameArea" class="absolute inset-0 hidden">
+                        <!-- Cannabis leaves will be spawned here -->
+                    </div>
+                    
+                    <!-- Game Over Screen -->
+                    <div class="absolute inset-0 flex items-center justify-center z-10 hidden" id="gameOver">
+                        <div class="text-center">
+                            <h3 class="text-2xl font-bold text-primary mb-4">Game Over!</h3>
+                            <p class="text-muted-foreground mb-4">Final Score: <span id="finalScore" class="text-primary font-bold">0</span></p>
+                            <button onclick="resetGame()" class="bg-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
+                                Play Again
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: InteractiveGame -->
+
+        <!-- Mystery Section -->
+        <!-- @COMPONENT: MysterySection -->
+        <section class="py-20 px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="bg-card border border-border rounded-2xl p-12">
+                    <!-- Cannabis botanical illustration background -->
+                    <div class="relative">
+                        <div class="absolute inset-0 opacity-5">
+                            <!-- Cannabis botanical illustration -->
+                            <img src="https://pixabay.com/get/g7201461a8e513b2f59085dd2ab320e169d690e83d247c3101e427f4184238bb6ae26a1c3eaed9491df962ccf7df414d43bca13556afa4f843a3d798935a4dfd1_1280.jpg" alt="Cannabis botanical illustration" class="w-full h-full object-cover rounded-xl" />
+                        </div>
+                        <div class="relative z-10">
+                            <h3 class="text-3xl font-bold text-primary mb-6">The Journey Begins</h3>
+                            <p class="text-muted-foreground text-lg leading-relaxed mb-8">
+                                We're cultivating something special. A premium experience that transcends the ordinary. 
+                                Follow our journey and be the first to know when we unlock the next level.
+                            </p>
+                            <div class="flex justify-center space-x-4">
+                                <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                                <div class="w-2 h-2 bg-primary rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
+                                <div class="w-2 h-2 bg-primary rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: MysterySection -->
+
+        <!-- Social Media Section -->
+        <!-- @COMPONENT: SocialMediaSection -->
+        <section class="py-20 px-4">
+            <div class="max-w-2xl mx-auto text-center">
+                <h3 class="text-3xl font-bold text-primary mb-8">Stay Connected</h3>
+                <p class="text-muted-foreground text-lg mb-12">
+                    Follow our journey across platforms. Exclusive content and early access await.
+                </p>
+                
+                <!-- Social Media Links -->
+                <div class="flex justify-center space-x-8 mb-12">
+                    <!-- TikTok -->
+                    <a href="#" class="social-icon group" data-implementation="Link to actual TikTok profile">
+                        <div class="w-16 h-16 bg-card border border-border rounded-2xl flex items-center justify-center hover:bg-primary hover:border-primary transition-all">
+                            <i class="fab fa-tiktok text-2xl text-muted-foreground group-hover:text-primary-foreground"></i>
+                        </div>
+                    </a>
+                    
+                    <!-- Instagram -->
+                    <a href="#" class="social-icon group" data-implementation="Link to actual Instagram profile">
+                        <div class="w-16 h-16 bg-card border border-border rounded-2xl flex items-center justify-center hover:bg-primary hover:border-primary transition-all">
+                            <i class="fab fa-instagram text-2xl text-muted-foreground group-hover:text-primary-foreground"></i>
+                        </div>
+                    </a>
+                    
+                    <!-- Snapchat -->
+                    <a href="#" class="social-icon group" data-implementation="Link to actual Snapchat profile">
+                        <div class="w-16 h-16 bg-card border border-border rounded-2xl flex items-center justify-center hover:bg-primary hover:border-primary transition-all">
+                            <i class="fab fa-snapchat-ghost text-2xl text-muted-foreground group-hover:text-primary-foreground"></i>
+                        </div>
+                    </a>
+                    
+                    <!-- Telegram -->
+                    <a href="#" class="social-icon group" data-implementation="Link to actual Telegram channel">
+                        <div class="w-16 h-16 bg-card border border-border rounded-2xl flex items-center justify-center hover:bg-primary hover:border-primary transition-all">
+                            <i class="fab fa-telegram-plane text-2xl text-muted-foreground group-hover:text-primary-foreground"></i>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Newsletter Signup Teaser -->
+                <div class="bg-card border border-border rounded-xl p-8">
+                    <h4 class="text-xl font-semibold text-primary mb-4">Get Early Access</h4>
+                    <p class="text-muted-foreground mb-6">Be the first to know when we launch. Exclusive previews for early supporters.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                        <input type="email" placeholder="Enter your email" class="flex-1 bg-muted border border-border rounded-lg px-4 py-3 text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" data-implementation="Connect to email marketing service">
+                        <button class="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors whitespace-nowrap" data-implementation="Handle email subscription">
+                            Join List
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: SocialMediaSection -->
+
+        <!-- Footer -->
+        <footer class="py-12 px-4 border-t border-border">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="mb-8">
+                    <!-- Cannabis plant imagery as subtle footer decoration -->
+                    <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=100" alt="Cannabis plant silhouette" class="mx-auto opacity-20 h-16 w-auto object-contain" />
+                </div>
+                <p class="text-muted-foreground text-sm">
+                    © 2024 Elevation. Premium cannabis experiences coming soon.
+                </p>
+                <p class="text-muted-foreground text-xs mt-2">
+                    For adults 21+ only. Please consume responsibly.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Game JavaScript -->
+    <script>
+    (function() {
+        // Game state
+        let gameActive = false;
+        let score = 0;
+        let gameTimer;
+        let spawnTimer;
+        let gameLength = 30000; // 30 seconds
+
+        // Game functions
+        window.startGame = function() {
+            gameActive = true;
+            score = 0;
+            updateScore();
+            
+            // Hide instructions, show game area
+            document.getElementById('gameInstructions').classList.add('hidden');
+            document.getElementById('gameArea').classList.remove('hidden');
+            
+            // Start spawning leaves
+            spawnLeaves();
+            
+            // Set game timer
+            gameTimer = setTimeout(endGame, gameLength);
+        };
+
+        function spawnLeaves() {
+            if (!gameActive) return;
+            
+            // Create a new leaf
+            const leaf = createLeaf();
+            document.getElementById('gameArea').appendChild(leaf);
+            
+            // Remove leaf after 3 seconds if not clicked
+            setTimeout(() => {
+                if (leaf.parentNode) {
+                    leaf.parentNode.removeChild(leaf);
+                }
+            }, 3000);
+            
+            // Spawn next leaf
+            const nextSpawnTime = Math.random() * 1500 + 500; // 0.5-2 seconds
+            spawnTimer = setTimeout(spawnLeaves, nextSpawnTime);
+        }
+
+        function createLeaf() {
+            const leaf = document.createElement('div');
+            leaf.className = 'game-leaf absolute w-12 h-12 cursor-pointer';
+            
+            // Position randomly
+            const maxX = 300; // Approximate game area width - leaf width
+            const maxY = 300; // Approximate game area height - leaf height
+            leaf.style.left = Math.random() * maxX + 'px';
+            leaf.style.top = Math.random() * maxY + 'px';
+            
+            // Add leaf image
+            leaf.innerHTML = `<img src="https://images.unsplash.com/photo-1601049676869-702ea24cfd58?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100" alt="Cannabis leaf" class="w-full h-full object-contain filter brightness-0 saturate-100" style="filter: invert(48%) sepia(79%) saturate(394%) hue-rotate(85deg) brightness(118%) contrast(119%);" />`;
+            
+            // Add click handler
+            leaf.addEventListener('click', function() {
+                if (!gameActive) return;
+                
+                // Add collected animation
+                leaf.classList.add('collected');
+                score += 10;
+                updateScore();
+                
+                // Remove leaf after animation
+                setTimeout(() => {
+                    if (leaf.parentNode) {
+                        leaf.parentNode.removeChild(leaf);
+                    }
+                }, 500);
+            });
+            
+            return leaf;
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = `Score: ${score}`;
+        }
+
+        function endGame() {
+            gameActive = false;
+            clearTimeout(spawnTimer);
+            
+            // Clear remaining leaves
+            document.getElementById('gameArea').innerHTML = '';
+            
+            // Show game over screen
+            document.getElementById('gameArea').classList.add('hidden');
+            document.getElementById('gameOver').classList.remove('hidden');
+            document.getElementById('finalScore').textContent = score;
+        }
+
+        window.resetGame = function() {
+            // Reset game state
+            gameActive = false;
+            score = 0;
+            clearTimeout(gameTimer);
+            clearTimeout(spawnTimer);
+            
+            // Reset UI
+            document.getElementById('gameOver').classList.add('hidden');
+            document.getElementById('gameInstructions').classList.remove('hidden');
+            document.getElementById('gameArea').innerHTML = '';
+            updateScore();
+        };
+    })();
+    </script>
+
+    <!-- Smooth scrolling and additional interactions -->
+    <script>
+    (function() {
+        // Add smooth scrolling behavior
+        document.documentElement.style.scrollBehavior = 'smooth';
+        
+        // Add parallax effect to background
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallax = scrolled * 0.5;
+            document.querySelector('.cannabis-bg').style.transform = `translateY(${parallax}px)`;
+        });
+        
+        // Add hover effects to social media icons
+        document.querySelectorAll('.social-icon').forEach(icon => {
+            icon.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.1)';
+            });
+            
+            icon.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // TODO: Implement email subscription functionality
+        // TODO: Connect social media links to actual profiles  
+        // TODO: Add analytics tracking for user interactions
+        // TODO: Implement proper form validation and submission
+    })();
+    </script>
+</body>
+</html>

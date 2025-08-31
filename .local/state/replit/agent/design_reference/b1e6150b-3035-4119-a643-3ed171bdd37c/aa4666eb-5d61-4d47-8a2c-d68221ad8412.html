@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHADOW LEAF - Coming Soon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)",
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "var(--background)",
+                    foreground: "var(--foreground)",
+                    card: {
+                        DEFAULT: "var(--card)",
+                        foreground: "var(--card-foreground)",
+                    },
+                    primary: {
+                        DEFAULT: "var(--primary)",
+                        foreground: "var(--primary-foreground)",
+                    },
+                    secondary: {
+                        DEFAULT: "var(--secondary)",
+                        foreground: "var(--secondary-foreground)",
+                    },
+                    muted: {
+                        DEFAULT: "var(--muted)",
+                        foreground: "var(--muted-foreground)",
+                    },
+                    accent: {
+                        DEFAULT: "var(--accent)",
+                        foreground: "var(--accent-foreground)",
+                    },
+                    border: "var(--border)",
+                    ring: "var(--ring)",
+                }
+            }
+        }
+    };
+    </script>
+    <style>
+        :root {
+            --background: hsl(240 10% 4%);
+            --foreground: hsl(280 40% 85%);
+            --card: hsl(240 10% 8%);
+            --card-foreground: hsl(280 30% 80%);
+            --primary: hsl(271 76% 53%);
+            --primary-foreground: hsl(280 15% 95%);
+            --secondary: hsl(240 15% 15%);
+            --secondary-foreground: hsl(280 25% 75%);
+            --muted: hsl(240 10% 12%);
+            --muted-foreground: hsl(280 20% 65%);
+            --accent: hsl(277 92% 61%);
+            --accent-foreground: hsl(280 10% 95%);
+            --border: hsl(240 15% 20%);
+            --ring: hsl(271 76% 53%);
+            --radius: 0.75rem;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, hsl(240 10% 4%) 0%, hsl(240 15% 8%) 100%);
+            min-height: 100vh;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px hsl(271 76% 53%), 0 0 40px hsl(271 76% 53%);
+        }
+
+        .leaf-cursor {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .leaf-cursor:hover {
+            transform: scale(1.1) rotate(5deg);
+            filter: drop-shadow(0 0 15px hsl(271 76% 53%));
+        }
+
+        .floating-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .smoke-effect {
+            opacity: 0.6;
+            filter: blur(1px);
+        }
+
+        .game-area {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(45deg, hsl(240 10% 6%) 0%, hsl(240 15% 10%) 100%);
+            border: 2px solid hsl(271 76% 53%);
+            border-radius: var(--radius);
+        }
+
+        .collected-leaf {
+            animation: collect 0.5s ease-out forwards;
+        }
+
+        @keyframes collect {
+            0% { transform: scale(1) rotate(0deg); opacity: 1; }
+            100% { transform: scale(0.2) rotate(360deg); opacity: 0; }
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            from { box-shadow: 0 0 20px hsl(271 76% 53%); }
+            to { box-shadow: 0 0 40px hsl(271 76% 53%), 0 0 60px hsl(271 76% 53%); }
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground">
+    <!-- @COMPONENT: App [main application container] -->
+    <div class="min-h-screen relative overflow-hidden">
+        
+        <!-- Background Atmospheric Elements -->
+        <!-- Mysterious dark cannabis field background -->
+        <div class="absolute inset-0 opacity-20" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080'); background-size: cover; background-position: center;"></div>
+        
+        <!-- Smoke effect overlay -->
+        <div class="absolute inset-0 opacity-10" style="background-image: url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080'); background-size: cover; background-position: center;"></div>
+
+        <!-- @COMPONENT: Header [navigation and branding] -->
+        <header class="relative z-10 px-6 py-8">
+            <div class="max-w-6xl mx-auto flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-cannabis text-3xl text-primary"></i>
+                    <h1 class="text-2xl font-bold text-primary glow-text">SHADOW LEAF</h1>
+                </div>
+                <div class="text-sm text-muted-foreground">
+                    <span data-bind="countdown.text">Coming Soon</span>
+                </div>
+            </div>
+        </header>
+        <!-- @END_COMPONENT: Header -->
+
+        <!-- @COMPONENT: HeroSection [main coming soon message] -->
+        <section class="relative z-10 px-6 py-16">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-6xl md:text-8xl font-black text-primary glow-text mb-6 tracking-tight">
+                    COMING<br>SOON
+                </h2>
+                <p class="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+                    Something extraordinary is growing in the shadows. 
+                    <span class="text-primary">Prepare yourself.</span>
+                </p>
+                
+                <!-- Mysterious cannabis leaf with dark aesthetic -->
+                <div class="relative w-32 h-32 mx-auto mb-12 floating-animation">
+                    <img src="https://pixabay.com/get/gbbcef2e920b998f1c4ce5072fad52be712734a9ddbcc41635d705b50d86e7aa7423d1374f839029dc7e058343f52fd54a878f04e8ca4abf632459318033a0606_1280.jpg" 
+                         alt="Dark cannabis leaf silhouette" 
+                         class="w-full h-full object-cover rounded-full border-4 border-primary pulse-glow" />
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
+                    <span class="flex items-center"><i class="fas fa-seedling mr-2 text-primary"></i>Premium Quality</span>
+                    <span class="flex items-center"><i class="fas fa-moon mr-2 text-primary"></i>Shadow Grown</span>
+                    <span class="flex items-center"><i class="fas fa-fire mr-2 text-primary"></i>Limited Edition</span>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: HeroSection -->
+
+        <!-- @COMPONENT: InteractiveGame [weed collection mini-game] -->
+        <section class="relative z-10 px-6 py-16" id="gameSection">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-8">
+                    <h3 class="text-3xl font-bold text-primary mb-4">Collect the Shadow Leaves</h3>
+                    <p class="text-muted-foreground">Click the floating leaves to reveal secrets...</p>
+                    <div class="mt-4">
+                        <span class="text-2xl font-bold text-accent">Score: <span id="gameScore" data-bind="game.score">0</span></span>
+                    </div>
+                </div>
+
+                <div class="game-area h-96 relative" id="gameArea">
+                    <!-- Abstract dark texture background for game area -->
+                    <div class="absolute inset-0 opacity-30" style="background-image: url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600'); background-size: cover; background-position: center;"></div>
+                    
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <button 
+                            id="startGameBtn" 
+                            class="bg-primary hover:bg-accent text-primary-foreground px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:scale-105"
+                            data-event="click:startGame"
+                            data-implementation="Initialize game state and spawn leaves">
+                            Start Collecting
+                        </button>
+                    </div>
+
+                    <!-- Game leaves will be spawned here dynamically -->
+                    <!-- @FUNCTIONALITY: This game should spawn clickable cannabis leaves at random positions that players can collect for points -->
+                </div>
+
+                <div class="text-center mt-6">
+                    <p class="text-sm text-muted-foreground">
+                        Collect <span class="text-accent font-bold">50 leaves</span> to unlock a special preview...
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: InteractiveGame -->
+
+        <!-- @COMPONENT: MysteryHints [atmospheric content] -->
+        <section class="relative z-10 px-6 py-16">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center group">
+                        <!-- Dark smoke swirling effect -->
+                        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-muted border-2 border-primary/30 flex items-center justify-center group-hover:border-primary transition-colors duration-300">
+                            <img src="https://pixabay.com/get/gc60b2336fc23fb56709c97130e0c2127f27dcd7889c63065e5c4f7e1b862a745ac01e9ea824a0a8b78beacb362f4e9d0bac8b6dfd5c0d8ab38a9da840a88b0ec_1280.jpg" 
+                                 alt="Mysterious smoke swirl" 
+                                 class="w-16 h-16 object-cover rounded-full smoke-effect" />
+                        </div>
+                        <h4 class="text-lg font-semibold text-primary mb-2">Shadow Strain</h4>
+                        <p class="text-sm text-muted-foreground">Cultivated in darkness, perfected in mystery</p>
+                    </div>
+
+                    <div class="text-center group">
+                        <!-- Abstract dark leaf pattern -->
+                        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-muted border-2 border-primary/30 flex items-center justify-center group-hover:border-primary transition-colors duration-300">
+                            <img src="https://pixabay.com/get/g84c04ce6ae9a9df385152b1ad270dabcff281f87ba576372d4fc8b7359caa7be879543198abe809583deb178544e33cdf6acb24352c179d8addc90c65ab338d9_1280.jpg" 
+                                 alt="Dark cannabis leaf macro" 
+                                 class="w-16 h-16 object-cover rounded-full" />
+                        </div>
+                        <h4 class="text-lg font-semibold text-primary mb-2">Limited Drop</h4>
+                        <p class="text-sm text-muted-foreground">Only the chosen few will experience this</p>
+                    </div>
+
+                    <div class="text-center group">
+                        <!-- Dark textured background representing quality -->
+                        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-muted border-2 border-primary/30 flex items-center justify-center group-hover:border-primary transition-colors duration-300">
+                            <img src="https://images.unsplash.com/photo-1533577116850-9cc66cad8a9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200" 
+                                 alt="Dark textured surface with cannabis elements" 
+                                 class="w-16 h-16 object-cover rounded-full" />
+                        </div>
+                        <h4 class="text-lg font-semibold text-primary mb-2">Premium Quality</h4>
+                        <p class="text-sm text-muted-foreground">Crafted for those who demand the finest</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: MysteryHints -->
+
+        <!-- @COMPONENT: SocialLinks [social media connections] -->
+        <section class="relative z-10 px-6 py-16">
+            <div class="max-w-2xl mx-auto text-center">
+                <h3 class="text-2xl font-bold text-primary mb-8">Follow the Shadow</h3>
+                <p class="text-muted-foreground mb-8">Stay connected for exclusive drops and mysterious updates...</p>
+                
+                <div class="flex justify-center space-x-8">
+                    <a href="#" 
+                       class="w-16 h-16 bg-card border-2 border-border hover:border-primary rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                       data-implementation="Link to actual TikTok profile">
+                        <i class="fab fa-tiktok text-2xl text-muted-foreground group-hover:text-primary transition-colors"></i>
+                    </a>
+                    <a href="#" 
+                       class="w-16 h-16 bg-card border-2 border-border hover:border-primary rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                       data-implementation="Link to actual Instagram profile">
+                        <i class="fab fa-instagram text-2xl text-muted-foreground group-hover:text-primary transition-colors"></i>
+                    </a>
+                    <a href="#" 
+                       class="w-16 h-16 bg-card border-2 border-border hover:border-primary rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                       data-implementation="Link to actual Snapchat profile">
+                        <i class="fab fa-snapchat text-2xl text-muted-foreground group-hover:text-primary transition-colors"></i>
+                    </a>
+                    <a href="#" 
+                       class="w-16 h-16 bg-card border-2 border-border hover:border-primary rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                       data-implementation="Link to actual Telegram channel">
+                        <i class="fab fa-telegram text-2xl text-muted-foreground group-hover:text-primary transition-colors"></i>
+                    </a>
+                </div>
+
+                <div class="mt-8 p-4 bg-card/50 rounded-lg border border-border">
+                    <p class="text-sm text-muted-foreground">
+                        <i class="fas fa-envelope mr-2 text-primary"></i>
+                        Subscribe for exclusive access to the shadow drop
+                    </p>
+                    <div class="flex mt-4 max-w-md mx-auto">
+                        <input 
+                            type="email" 
+                            placeholder="your@email.com" 
+                            class="flex-1 bg-background border border-border rounded-l-md px-4 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                            data-implementation="Email collection for newsletter signup">
+                        <button 
+                            class="bg-primary hover:bg-accent text-primary-foreground px-6 py-2 rounded-r-md font-semibold transition-colors"
+                            data-event="click:subscribeEmail"
+                            data-implementation="Handle email subscription">
+                            Join
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: SocialLinks -->
+
+        <!-- @COMPONENT: Footer [bottom content] -->
+        <footer class="relative z-10 px-6 py-8 border-t border-border">
+            <div class="max-w-6xl mx-auto text-center">
+                <div class="flex justify-center items-center space-x-4 mb-4">
+                    <i class="fas fa-cannabis text-primary"></i>
+                    <span class="text-sm text-muted-foreground">Shadow Leaf Brand © 2024</span>
+                    <i class="fas fa-cannabis text-primary"></i>
+                </div>
+                <p class="text-xs text-muted-foreground">
+                    For adults 21+. Please consume responsibly.
+                </p>
+            </div>
+        </footer>
+        <!-- @END_COMPONENT: Footer -->
+
+        <!-- Floating decorative leaves -->
+        <div class="absolute top-20 left-10 w-8 h-8 text-primary/30 floating-animation" style="animation-delay: 0s;">
+            <i class="fas fa-cannabis text-2xl"></i>
+        </div>
+        <div class="absolute top-40 right-16 w-6 h-6 text-primary/20 floating-animation" style="animation-delay: 1s;">
+            <i class="fas fa-cannabis text-xl"></i>
+        </div>
+        <div class="absolute bottom-32 left-20 w-10 h-10 text-primary/25 floating-animation" style="animation-delay: 2s;">
+            <i class="fas fa-cannabis text-2xl"></i>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: App -->
+
+    <script>
+    // TODO: Implement full game logic, state management, and API integration
+    (function() {
+        // @STATE: gameActive:boolean = false, score:number = 0, leaves:array = []
+        let gameState = {
+            active: false,
+            score: 0,
+            leaves: [],
+            targetScore: 50
+        };
+
+        const gameArea = document.getElementById('gameArea');
+        const scoreElement = document.getElementById('gameScore');
+        const startBtn = document.getElementById('startGameBtn');
+
+        // @FUNCTIONALITY: Game initialization and leaf spawning mechanics
+        function startGame() {
+            gameState.active = true;
+            gameState.score = 0;
+            startBtn.style.display = 'none';
+            updateScore();
+            spawnLeaves();
+        }
+
+        function spawnLeaves() {
+            if (!gameState.active) return;
+
+            // Spawn a new leaf every 2 seconds
+            const leaf = createLeaf();
+            gameArea.appendChild(leaf);
+            
+            setTimeout(() => {
+                if (leaf.parentNode) {
+                    leaf.remove();
+                }
+            }, 4000);
+
+            if (gameState.active) {
+                setTimeout(spawnLeaves, 2000);
+            }
+        }
+
+        function createLeaf() {
+            const leaf = document.createElement('div');
+            leaf.className = 'absolute w-12 h-12 text-primary cursor-pointer leaf-cursor transition-all duration-300';
+            leaf.innerHTML = '<i class="fas fa-cannabis text-3xl"></i>';
+            
+            // Random position within game area
+            const x = Math.random() * (gameArea.clientWidth - 48);
+            const y = Math.random() * (gameArea.clientHeight - 48);
+            leaf.style.left = x + 'px';
+            leaf.style.top = y + 'px';
+
+            leaf.addEventListener('click', function() {
+                collectLeaf(leaf);
+            });
+
+            return leaf;
+        }
+
+        function collectLeaf(leaf) {
+            gameState.score += 1;
+            updateScore();
+            
+            leaf.classList.add('collected-leaf');
+            setTimeout(() => {
+                if (leaf.parentNode) {
+                    leaf.remove();
+                }
+            }, 500);
+
+            // Check if target reached
+            if (gameState.score >= gameState.targetScore) {
+                showSpecialMessage();
+            }
+        }
+
+        function updateScore() {
+            scoreElement.textContent = gameState.score;
+        }
+
+        function showSpecialMessage() {
+            gameState.active = false;
+            gameArea.innerHTML = `
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="text-center p-8 bg-card/80 rounded-lg border border-primary">
+                        <i class="fas fa-crown text-4xl text-accent mb-4"></i>
+                        <h4 class="text-2xl font-bold text-primary mb-4">Shadow Master Achieved</h4>
+                        <p class="text-muted-foreground mb-6">You've proven worthy of the shadow secrets...</p>
+                        <p class="text-accent font-semibold">First access guaranteed when we launch</p>
+                        <button 
+                            class="mt-4 bg-primary hover:bg-accent text-primary-foreground px-6 py-2 rounded-md transition-colors"
+                            onclick="resetGame()">
+                            Play Again
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function resetGame() {
+            gameState.active = false;
+            gameState.score = 0;
+            gameState.leaves = [];
+            gameArea.innerHTML = `
+                <div class="absolute inset-0 opacity-30" style="background-image: url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600'); background-size: cover; background-position: center;"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <button 
+                        id="startGameBtn" 
+                        class="bg-primary hover:bg-accent text-primary-foreground px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:scale-105"
+                        onclick="startGame()">
+                        Start Collecting
+                    </button>
+                </div>
+            `;
+            updateScore();
+        }
+
+        // Event listeners
+        startBtn.addEventListener('click', startGame);
+
+        // @FUNCTIONALITY: Social media link tracking and analytics
+        document.querySelectorAll('a[href="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // TODO: Implement social media link tracking
+                console.log('Social media link clicked:', this.querySelector('i').className);
+            });
+        });
+
+        // Email subscription handling
+        document.querySelector('button[data-event="click:subscribeEmail"]').addEventListener('click', function() {
+            const emailInput = document.querySelector('input[type="email"]');
+            const email = emailInput.value;
+            
+            if (email && email.includes('@')) {
+                // TODO: Implement email subscription API call
+                alert('Welcome to the shadow... You\'ll be the first to know.');
+                emailInput.value = '';
+            } else {
+                alert('Please enter a valid email to join the shadow collective.');
+            }
+        });
+
+        // Make resetGame available globally
+        window.resetGame = resetGame;
+    })();
+    </script>
+</body>
+</html>

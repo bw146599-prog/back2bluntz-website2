@@ -1,0 +1,566 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VERDANT - Coming Soon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)",
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "var(--background)",
+                    foreground: "var(--foreground)",
+                    card: {
+                        DEFAULT: "var(--card)",
+                        foreground: "var(--card-foreground)",
+                    },
+                    primary: {
+                        DEFAULT: "var(--primary)",
+                        foreground: "var(--primary-foreground)",
+                    },
+                    secondary: {
+                        DEFAULT: "var(--secondary)",
+                        foreground: "var(--secondary-foreground)",
+                    },
+                    muted: {
+                        DEFAULT: "var(--muted)",
+                        foreground: "var(--muted-foreground)",
+                    },
+                    accent: {
+                        DEFAULT: "var(--accent)",
+                        foreground: "var(--accent-foreground)",
+                    },
+                    border: "var(--border)",
+                    input: "var(--input)",
+                    ring: "var(--ring)",
+                },
+                fontFamily: {
+                    sans: ["var(--font-sans)"],
+                },
+                animation: {
+                    'float': 'float 6s ease-in-out infinite',
+                    'glow': 'glow 2s ease-in-out infinite alternate',
+                    'drift': 'drift 8s linear infinite',
+                }
+            },
+        }
+    };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --background: hsl(240 10% 4%);
+            --foreground: hsl(240 5% 95%);
+            --card: hsl(240 10% 8%);
+            --card-foreground: hsl(240 5% 90%);
+            --primary: hsl(98 48% 25%);
+            --primary-foreground: hsl(98 48% 90%);
+            --secondary: hsl(240 4% 15%);
+            --secondary-foreground: hsl(240 5% 85%);
+            --muted: hsl(240 4% 15%);
+            --muted-foreground: hsl(240 5% 65%);
+            --accent: hsl(45 93% 47%);
+            --accent-foreground: hsl(45 93% 15%);
+            --border: hsl(240 6% 20%);
+            --input: hsl(240 6% 20%);
+            --ring: hsl(98 48% 35%);
+            --radius: 0.75rem;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--background);
+            color: var(--foreground);
+            overflow-x: hidden;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 20px hsl(98 48% 35% / 0.5); }
+            to { box-shadow: 0 0 30px hsl(98 48% 35% / 0.8), 0 0 40px hsl(98 48% 35% / 0.4); }
+        }
+
+        @keyframes drift {
+            0% { transform: translateX(-100px) translateY(100vh) rotate(0deg); }
+            100% { transform: translateX(100vw) translateY(-100px) rotate(360deg); }
+        }
+
+        .hero-bg {
+            background: 
+                radial-gradient(circle at 25% 25%, hsl(98 48% 15% / 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, hsl(45 93% 47% / 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, var(--background) 0%, hsl(240 10% 6%) 100%);
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: drift linear infinite;
+        }
+
+        .leaf-cursor {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .leaf-cursor:hover {
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 10px hsl(98 48% 35%));
+        }
+
+        .social-glow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px hsl(98 48% 35% / 0.3);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px hsl(98 48% 35% / 0.5);
+        }
+
+        .smoke-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 80%, hsl(240 10% 15% / 0.8) 0%, transparent 60%),
+                radial-gradient(circle at 70% 20%, hsl(240 10% 12% / 0.6) 0%, transparent 60%);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-background text-foreground">
+    <!-- Floating Particles Background -->
+    <div id="particles-container" class="fixed inset-0 pointer-events-none z-0"></div>
+    
+    <!-- Smoke Effect Overlay -->
+    <div class="smoke-effect fixed inset-0 z-10 pointer-events-none"></div>
+
+    <!-- Main Container -->
+    <div class="relative z-20 min-h-screen">
+        <!-- Hero Section -->
+        <!-- @COMPONENT: HeroSection [main landing area with branding] -->
+        <section class="hero-bg min-h-screen flex flex-col items-center justify-center px-4 relative overflow-hidden">
+            <!-- Dark cannabis leaves scattered in background -->
+            <!-- A close-up of dark cannabis leaves with dramatic lighting and shadows -->
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100" 
+                 alt="Dark cannabis leaf" class="absolute top-20 left-10 w-16 h-16 opacity-20 animate-float" />
+            <!-- Silhouette of cannabis leaves against dark background -->
+            <img src="https://pixabay.com/get/g0a2527d132d9c24c087312eba1da567992e4961c787ccbd7a32ce4b68928c5e54ffae5cc63fcc85acd7e80e5708e2c40de71e02f70eaf3bc8b7df73fa445c708_1280.jpg" 
+                 alt="Cannabis leaf silhouette" class="absolute top-40 right-20 w-20 h-20 opacity-15 animate-float" style="animation-delay: 2s;" />
+            <!-- Dark textured cannabis leaves with moody atmosphere -->
+            <img src="https://pixabay.com/get/gbeb0de945547108e7375388fb0f90d3db890e85e25f3855716ae1a249f78120c7ae536e982eff5f508b421cf446d99233cb39a1800be0b8f1b32ba5138a7e206_1280.jpg" 
+                 alt="Textured cannabis leaves" class="absolute bottom-32 left-1/4 w-12 h-12 opacity-25 animate-float" style="animation-delay: 4s;" />
+            <!-- Cannabis plant in dramatic dark lighting -->
+            <img src="https://pixabay.com/get/ge9cddb2fd4e5d996d15056685940e172c79b095bd2ff25838f60696b7731f7aedd97ff9a83a4d8552e5ba30aac6614962cc5b94310c17bf9d13e30708ef03925_1280.jpg" 
+                 alt="Cannabis plant in darkness" class="absolute bottom-20 right-10 w-18 h-18 opacity-20 animate-float" style="animation-delay: 1s;" />
+
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="font-black text-6xl md:text-8xl lg:text-9xl mb-6 text-glow" style="font-family: 'Orbitron', monospace;">
+                    <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">VERDANT</span>
+                </h1>
+                
+                <div class="mb-8">
+                    <p class="text-2xl md:text-3xl font-light text-muted-foreground mb-4">Something extraordinary is growing...</p>
+                    <div class="w-32 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full animate-glow"></div>
+                </div>
+
+                <!-- Coming Soon Counter -->
+                <div class="bg-card/80 backdrop-blur-sm border border-border rounded-lg p-6 mb-12 max-w-lg mx-auto">
+                    <h3 class="text-xl font-semibold mb-4 text-accent">Launch Countdown</h3>
+                    <div id="countdown" class="grid grid-cols-4 gap-4 text-center">
+                        <div class="bg-secondary rounded-lg p-3">
+                            <div id="days" class="text-2xl font-bold text-primary">00</div>
+                            <div class="text-xs text-muted-foreground">DAYS</div>
+                        </div>
+                        <div class="bg-secondary rounded-lg p-3">
+                            <div id="hours" class="text-2xl font-bold text-primary">00</div>
+                            <div class="text-xs text-muted-foreground">HOURS</div>
+                        </div>
+                        <div class="bg-secondary rounded-lg p-3">
+                            <div id="minutes" class="text-2xl font-bold text-primary">00</div>
+                            <div class="text-xs text-muted-foreground">MINS</div>
+                        </div>
+                        <div class="bg-secondary rounded-lg p-3">
+                            <div id="seconds" class="text-2xl font-bold text-primary">00</div>
+                            <div class="text-xs text-muted-foreground">SECS</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="space-y-4">
+                    <p class="text-lg text-muted-foreground">Be among the first to experience the revolution</p>
+                    <button class="bg-primary hover:bg-primary/80 text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:scale-105 animate-glow">
+                        Get Early Access
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: HeroSection -->
+
+        <!-- Interactive Game Section -->
+        <!-- @COMPONENT: InteractiveGame [cannabis leaf collection mini-game] -->
+        <section class="py-20 px-4 bg-gradient-to-b from-background to-secondary/20">
+            <div class="max-w-6xl mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-glow">Collect the Essence</h2>
+                <p class="text-xl text-muted-foreground mb-12">Click the floating leaves to unlock exclusive previews</p>
+                
+                <div class="bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-8 mx-auto max-w-4xl">
+                    <!-- Game Stats -->
+                    <div class="flex justify-between items-center mb-8">
+                        <div class="bg-secondary rounded-lg px-6 py-3">
+                            <span class="text-accent font-semibold">Score: </span>
+                            <span id="game-score" class="text-primary text-xl font-bold">0</span>
+                        </div>
+                        <div class="bg-secondary rounded-lg px-6 py-3">
+                            <span class="text-accent font-semibold">Level: </span>
+                            <span id="game-level" class="text-primary text-xl font-bold">1</span>
+                        </div>
+                        <button id="reset-game" class="bg-accent hover:bg-accent/80 text-accent-foreground px-6 py-3 rounded-lg font-semibold transition-all">
+                            Reset
+                        </button>
+                    </div>
+
+                    <!-- Game Area -->
+                    <div id="game-area" class="relative h-96 bg-gradient-to-b from-background to-secondary/30 rounded-xl border border-border overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center text-muted-foreground">
+                            <p class="text-lg">Click floating leaves as they appear...</p>
+                        </div>
+                    </div>
+
+                    <!-- Game Instructions -->
+                    <div class="mt-6 text-sm text-muted-foreground">
+                        <p>🍃 Click the floating cannabis leaves to earn points</p>
+                        <p>⚡ Faster clicks = Higher scores • Golden leaves = Bonus points</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: InteractiveGame -->
+
+        <!-- Social Media & Community -->
+        <!-- @COMPONENT: SocialSection [social media links and community building] -->
+        <section class="py-20 px-4 bg-gradient-to-b from-secondary/20 to-background">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-glow">Join the Underground</h2>
+                <p class="text-xl text-muted-foreground mb-12">Follow our journey across all platforms</p>
+
+                <!-- Social Media Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+                    <!-- TikTok -->
+                    <a href="#" class="group bg-card hover:bg-card/80 border border-border rounded-xl p-6 transition-all duration-300 social-glow">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl flex items-center justify-center">
+                            <i class="fab fa-tiktok text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">TikTok</h3>
+                        <p class="text-sm text-muted-foreground">Exclusive clips</p>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a href="#" class="group bg-card hover:bg-card/80 border border-border rounded-xl p-6 transition-all duration-300 social-glow">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                            <i class="fab fa-instagram text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">Instagram</h3>
+                        <p class="text-sm text-muted-foreground">Behind scenes</p>
+                    </a>
+
+                    <!-- Snapchat -->
+                    <a href="#" class="group bg-card hover:bg-card/80 border border-border rounded-xl p-6 transition-all duration-300 social-glow">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-xl flex items-center justify-center">
+                            <i class="fab fa-snapchat-ghost text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">Snapchat</h3>
+                        <p class="text-sm text-muted-foreground">Daily updates</p>
+                    </a>
+
+                    <!-- Telegram -->
+                    <a href="#" class="group bg-card hover:bg-card/80 border border-border rounded-xl p-6 transition-all duration-300 social-glow">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center">
+                            <i class="fab fa-telegram-plane text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">Telegram</h3>
+                        <p class="text-sm text-muted-foreground">Inner circle</p>
+                    </a>
+                </div>
+
+                <!-- Newsletter Signup -->
+                <div class="bg-card/80 backdrop-blur-sm border border-border rounded-2xl p-8 max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-bold mb-4 text-accent">Stay in the Loop</h3>
+                    <p class="text-muted-foreground mb-6">Get exclusive updates and early access opportunities</p>
+                    
+                    <form id="newsletter-form" class="space-y-4">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Your Name" data-mock="true" 
+                                   class="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring text-foreground">
+                            <input type="email" placeholder="Email Address" data-mock="true"
+                                   class="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring text-foreground">
+                        </div>
+                        <button type="submit" class="w-full bg-primary hover:bg-primary/80 text-primary-foreground py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105">
+                            Join the Movement
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: SocialSection -->
+
+        <!-- Mystery Teasers -->
+        <!-- @COMPONENT: MysterySection [atmospheric teasers and hints] -->
+        <section class="py-20 px-4 relative overflow-hidden">
+            <!-- Mysterious smoke effects and abstract textures in background -->
+            <!-- Atmospheric smoke swirling in darkness -->
+            <img src="https://pixabay.com/get/g7d1ee50b9f8b57e128531359f9392474f7e297856e1a82437176291c424fedac09bb982f23f5974d91608d43a9ee1f09b76693a281dbd6ad769a5b8557cdc749_1280.jpg" 
+                 alt="Smoke effects" class="absolute inset-0 w-full h-full object-cover opacity-10" />
+            <!-- Dark abstract texture with mystical atmosphere -->
+            <img src="https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=800" 
+                 alt="Dark abstract texture" class="absolute inset-0 w-full h-full object-cover opacity-5" />
+            <!-- Mystical dark texture with ethereal qualities -->
+            <img src="https://pixabay.com/get/g08c9da149eee7814c4ed0d087243856cc223ffb751bd9c935496ace720dc05764011b0c694bf98a7d9d6f1c13cf3a6321dace47202a0a7891f11827df746fca9_1280.jpg" 
+                 alt="Ethereal dark texture" class="absolute inset-0 w-full h-full object-cover opacity-8" />
+
+            <div class="relative z-10 max-w-4xl mx-auto text-center">
+                <div class="space-y-16">
+                    <!-- Mystery Quote -->
+                    <div class="max-w-3xl mx-auto">
+                        <blockquote class="text-3xl md:text-4xl font-light italic text-glow mb-8">
+                            "In the darkness, something powerful grows..."
+                        </blockquote>
+                        <div class="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+                    </div>
+
+                    <!-- Cryptic Hints -->
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-card/30 backdrop-blur-sm border border-border/50 rounded-xl p-6">
+                            <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
+                                <i class="fas fa-seedling text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3 text-accent">Premium Quality</h3>
+                            <p class="text-muted-foreground">Cultivated with precision and passion</p>
+                        </div>
+
+                        <div class="bg-card/30 backdrop-blur-sm border border-border/50 rounded-xl p-6">
+                            <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
+                                <i class="fas fa-flask text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3 text-accent">Innovation</h3>
+                            <p class="text-muted-foreground">Revolutionary products await</p>
+                        </div>
+
+                        <div class="bg-card/30 backdrop-blur-sm border border-border/50 rounded-xl p-6">
+                            <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
+                                <i class="fas fa-users text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3 text-accent">Community</h3>
+                            <p class="text-muted-foreground">Building connections that matter</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: MysterySection -->
+
+        <!-- Footer -->
+        <footer class="py-12 px-4 border-t border-border bg-card/20">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="mb-8">
+                    <h3 class="text-2xl font-bold mb-4" style="font-family: 'Orbitron', monospace;">VERDANT</h3>
+                    <p class="text-muted-foreground">The future of premium cannabis experiences</p>
+                </div>
+                
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="#" class="text-muted-foreground hover:text-primary transition-colors">
+                        <i class="fab fa-tiktok text-xl"></i>
+                    </a>
+                    <a href="#" class="text-muted-foreground hover:text-primary transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-muted-foreground hover:text-primary transition-colors">
+                        <i class="fab fa-snapchat-ghost text-xl"></i>
+                    </a>
+                    <a href="#" class="text-muted-foreground hover:text-primary transition-colors">
+                        <i class="fab fa-telegram-plane text-xl"></i>
+                    </a>
+                </div>
+                
+                <div class="text-sm text-muted-foreground">
+                    <p>&copy; 2024 Verdant. All rights reserved.</p>
+                    <p class="mt-2">This site is for educational and promotional purposes only.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+    (function() {
+        // Particle System
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            document.getElementById('particles-container').appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 15000);
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 2000);
+        
+        // Initial particles
+        for (let i = 0; i < 10; i++) {
+            setTimeout(createParticle, i * 500);
+        }
+
+        // Countdown Timer
+        // @STATE: targetDate:Date = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
+        const targetDate = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 days from now
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = targetDate.getTime() - now;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Interactive Cannabis Game
+        // @FUNCTIONALITY: Cannabis leaf collection game with clicking mechanics
+        let gameScore = 0;
+        let gameLevel = 1;
+        let activeLeaves = [];
+
+        function createGameLeaf() {
+            const gameArea = document.getElementById('game-area');
+            const leaf = document.createElement('div');
+            
+            // Random leaf type (normal or golden)
+            const isGolden = Math.random() < 0.2; // 20% chance for golden leaf
+            const points = isGolden ? 10 : 1;
+            
+            leaf.innerHTML = '🍃';
+            leaf.className = `absolute text-2xl leaf-cursor animate-float ${isGolden ? 'text-yellow-400' : 'text-green-400'}`;
+            leaf.style.left = Math.random() * (gameArea.offsetWidth - 40) + 'px';
+            leaf.style.top = Math.random() * (gameArea.offsetHeight - 40) + 'px';
+            leaf.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            
+            // Click handler
+            leaf.addEventListener('click', function() {
+                gameScore += points;
+                document.getElementById('game-score').textContent = gameScore;
+                
+                // Level up every 50 points
+                if (gameScore >= gameLevel * 50) {
+                    gameLevel++;
+                    document.getElementById('game-level').textContent = gameLevel;
+                }
+                
+                // Visual feedback
+                leaf.style.transform = 'scale(1.5)';
+                leaf.style.opacity = '0';
+                setTimeout(() => leaf.remove(), 300);
+                
+                // Remove from active leaves
+                const index = activeLeaves.indexOf(leaf);
+                if (index > -1) {
+                    activeLeaves.splice(index, 1);
+                }
+            });
+            
+            gameArea.appendChild(leaf);
+            activeLeaves.push(leaf);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (leaf.parentNode) {
+                    leaf.remove();
+                    const index = activeLeaves.indexOf(leaf);
+                    if (index > -1) {
+                        activeLeaves.splice(index, 1);
+                    }
+                }
+            }, 5000);
+        }
+
+        // Game leaf spawning
+        function spawnLeaves() {
+            const spawnRate = Math.max(1000 - (gameLevel * 100), 300); // Faster spawning at higher levels
+            createGameLeaf();
+            setTimeout(spawnLeaves, spawnRate);
+        }
+
+        // Reset game
+        document.getElementById('reset-game').addEventListener('click', function() {
+            gameScore = 0;
+            gameLevel = 1;
+            document.getElementById('game-score').textContent = '0';
+            document.getElementById('game-level').textContent = '1';
+            
+            // Remove all active leaves
+            activeLeaves.forEach(leaf => leaf.remove());
+            activeLeaves = [];
+        });
+
+        // Start the game
+        setTimeout(spawnLeaves, 2000);
+
+        // Newsletter form handling
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // TODO: Implement newsletter signup logic
+            alert('Thanks for joining! We\'ll keep you updated on our launch.');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    })();
+    </script>
+</body>
+</html>

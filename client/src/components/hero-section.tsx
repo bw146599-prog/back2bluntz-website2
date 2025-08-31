@@ -4,7 +4,7 @@ export default function HeroSection() {
       <div className="max-w-4xl mx-auto">
         {/* Brand Title */}
         <h1 className="text-6xl md:text-8xl font-bold text-primary mb-6 animate-glow tracking-tight" data-testid="brand-title">
-          ELEVATION
+          b2bluntz
         </h1>
         
         {/* Mysterious Tagline */}

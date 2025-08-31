@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { SiTiktok, SiInstagram, SiSnapchat, SiTelegram } from "react-icons/si";
+import { SiTiktok, SiInstagram, SiYoutube, SiTelegram } from "react-icons/si";
 
 export default function SocialMediaSection() {
   const [email, setEmail] = useState("");
@@ -16,8 +16,8 @@ export default function SocialMediaSection() {
   const socialPlatforms = [
     { icon: SiTiktok, name: "TikTok", color: "hover:bg-red-500", testId: "link-tiktok", url: "https://www.tiktok.com/@b2bluntz" },
     { icon: SiInstagram, name: "Instagram", color: "hover:bg-pink-500", testId: "link-instagram", url: "#" },
-    { icon: SiSnapchat, name: "Snapchat", color: "hover:bg-yellow-400", testId: "link-snapchat", url: "#" },
-    { icon: SiTelegram, name: "Telegram", color: "hover:bg-blue-500", testId: "link-telegram", url: "#" }
+    { icon: SiYoutube, name: "YouTube", color: "hover:bg-red-600", testId: "link-youtube", url: "https://www.youtube.com/@b2bluntz" },
+    { icon: SiTelegram, name: "Telegram", color: "hover:bg-blue-500", testId: "link-telegram", url: "https://t.me/b2blunt" }
   ];
 
   return (

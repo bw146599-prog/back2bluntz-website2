@@ -4,12 +4,13 @@ import { storage } from "./storage";
 import { socialMediaService } from "./social-media-service";
 import { telegramBotService } from "./telegram-bot";
 import { postScheduler } from "./scheduler";
+import { requireAdmin } from "./auth";
 import { insertSocialAccountSchema, insertPostSchema, insertBotSettingsSchema } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Social Media Accounts API
-  app.get('/api/social-accounts/:userId', async (req, res) => {
+  // Social Media Accounts API (protected)
+  app.get('/api/social-accounts/:userId', requireAdmin, async (req, res) => {
     try {
       const { userId } = req.params;
       const accounts = await storage.getSocialAccountsByUserId(userId);
@@ -19,7 +20,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post('/api/social-accounts', async (req, res) => {
+  app.post('/api/social-accounts', requireAdmin, async (req, res) => {
     try {
       const validatedData = insertSocialAccountSchema.parse(req.body);
       const account = await storage.insertSocialAccount(validatedData);
@@ -33,7 +34,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.patch('/api/social-accounts/:id/status', async (req, res) => {
+  app.patch('/api/social-accounts/:id/status', requireAdmin, async (req, res) => {
     try {
       const { id } = req.params;
       const { isActive } = req.body;
@@ -44,8 +45,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Posts API
-  app.get('/api/posts/:userId', async (req, res) => {
+  // Posts API (protected)
+  app.get('/api/posts/:userId', requireAdmin, async (req, res) => {
     try {
       const { userId } = req.params;
       const limit = parseInt(req.query.limit as string) || 50;
@@ -56,7 +57,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post('/api/posts', async (req, res) => {
+  app.post('/api/posts', requireAdmin, async (req, res) => {
     try {
       const validatedData = insertPostSchema.parse(req.body);
       const post = await storage.insertPost(validatedData);
@@ -90,8 +91,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Bot Settings API
-  app.get('/api/bot-settings/:userId', async (req, res) => {
+  // Bot Settings API (protected)
+  app.get('/api/bot-settings/:userId', requireAdmin, async (req, res) => {
     try {
       const { userId } = req.params;
       const settings = await storage.getBotSettingsByUserId(userId);
@@ -101,7 +102,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post('/api/bot-settings', async (req, res) => {
+  app.post('/api/bot-settings', requireAdmin, async (req, res) => {
     try {
       const validatedData = insertBotSettingsSchema.parse(req.body);
       const settings = await storage.insertBotSettings(validatedData);
@@ -115,8 +116,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Test social media connection
-  app.post('/api/test-connection', async (req, res) => {
+  // Test social media connection (protected)
+  app.post('/api/test-connection', requireAdmin, async (req, res) => {
     try {
       const { platform, accessToken } = req.body;
       const isValid = await socialMediaService.testConnection(platform, accessToken);
@@ -126,8 +127,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Send Telegram message
-  app.post('/api/telegram/send', async (req, res) => {
+  // Send Telegram message (protected)
+  app.post('/api/telegram/send', requireAdmin, async (req, res) => {
     try {
       const { chatId, message } = req.body;
       
@@ -143,8 +144,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Scheduler endpoints
-  app.get('/api/scheduler/status', async (req, res) => {
+  // Scheduler endpoints (protected)
+  app.get('/api/scheduler/status', requireAdmin, async (req, res) => {
     try {
       const scheduledCount = postScheduler.getScheduledPostsCount();
       const scheduledPosts = postScheduler.getScheduledPosts();
@@ -154,7 +155,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete('/api/scheduler/cancel/:postId', async (req, res) => {
+  app.delete('/api/scheduler/cancel/:postId', requireAdmin, async (req, res) => {
     try {
       const { postId } = req.params;
       const cancelled = postScheduler.cancelScheduledPost(postId);

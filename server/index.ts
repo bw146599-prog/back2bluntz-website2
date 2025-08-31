@@ -3,6 +3,7 @@ import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { telegramBotService } from "./telegram-bot";
 import { postScheduler } from "./scheduler";
+import { setupAuth } from "./auth";
 
 const app = express();
 app.use(express.json());
@@ -39,6 +40,9 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // Setup authentication
+  setupAuth(app);
+  
   // Initialize Telegram bot
   await telegramBotService.initialize();
   

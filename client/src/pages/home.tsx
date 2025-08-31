@@ -1,5 +1,4 @@
 import HeroSection from "@/components/hero-section";
-import InteractiveGame from "@/components/interactive-game";
 import MysterySection from "@/components/mystery-section";
 import SocialMediaSection from "@/components/social-media-section";
 
@@ -9,7 +8,6 @@ export default function Home() {
       {/* Main Content */}
       <div className="relative z-10 min-h-screen">
         <HeroSection />
-        <InteractiveGame />
         <MysterySection />
         <SocialMediaSection />
         

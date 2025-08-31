@@ -16,7 +16,7 @@ DEPLOYMENT PACKAGE:
 
 FILES INCLUDED:
 - index.html (main page)
-- assets/index-CUVngsQi.js (JavaScript bundle)
+- assets/index-Cv5-ooMz.js (JavaScript bundle)
 - assets/index-D2gdEXmA.css (CSS styles)
 
 DEPLOYMENT STEPS FOR IONOS:
@@ -29,14 +29,12 @@ DEPLOYMENT STEPS FOR IONOS:
 
 IMPORTANT NOTES:
 - This is a single-page static website - no server setup needed
-- All interactive features work client-side (the leaf game, animations)
 - Social media links are placeholder (#) - you'll need to update with real URLs
 - The email signup form logs to console - you'll need to implement backend handling if needed
 
 WEBSITE FEATURES:
 ✓ b2bluntz branding with purple theme
 ✓ Coming soon messaging  
-✓ Interactive leaf-clicking game
 ✓ Social media links (TikTok, Instagram, Snapchat, Telegram)
 ✓ Email newsletter signup form
 ✓ Mobile responsive design

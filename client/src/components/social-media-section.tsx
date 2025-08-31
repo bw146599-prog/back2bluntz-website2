@@ -14,10 +14,10 @@ export default function SocialMediaSection() {
   };
 
   const socialPlatforms = [
-    { icon: SiTiktok, name: "TikTok", color: "hover:bg-red-500", testId: "link-tiktok" },
-    { icon: SiInstagram, name: "Instagram", color: "hover:bg-pink-500", testId: "link-instagram" },
-    { icon: SiSnapchat, name: "Snapchat", color: "hover:bg-yellow-400", testId: "link-snapchat" },
-    { icon: SiTelegram, name: "Telegram", color: "hover:bg-blue-500", testId: "link-telegram" }
+    { icon: SiTiktok, name: "TikTok", color: "hover:bg-red-500", testId: "link-tiktok", url: "https://www.tiktok.com/@b2bluntz" },
+    { icon: SiInstagram, name: "Instagram", color: "hover:bg-pink-500", testId: "link-instagram", url: "#" },
+    { icon: SiSnapchat, name: "Snapchat", color: "hover:bg-yellow-400", testId: "link-snapchat", url: "#" },
+    { icon: SiTelegram, name: "Telegram", color: "hover:bg-blue-500", testId: "link-telegram", url: "#" }
   ];
 
   return (
@@ -42,9 +42,11 @@ export default function SocialMediaSection() {
           {socialPlatforms.map((platform, index) => (
             <a 
               key={platform.name}
-              href="#" 
+              href={platform.url} 
               className="group relative"
               data-testid={platform.testId}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <div className="bg-gradient-to-br from-card to-card/50 border border-border/50 rounded-3xl p-8 text-center transition-all duration-300 hover:border-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20">
                 <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">

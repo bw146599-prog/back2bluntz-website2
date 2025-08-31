@@ -1,27 +1,63 @@
 export default function HeroSection() {
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center text-center px-4">
-      <div className="max-w-4xl mx-auto">
-        {/* Brand Title */}
-        <h1 className="text-6xl md:text-8xl font-bold text-primary mb-6 animate-glow tracking-tight" data-testid="brand-title">
-          b2bluntz
-        </h1>
+    <section className="min-h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden">
+      {/* Gradient Background Elements */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+      
+      <div className="max-w-5xl mx-auto relative z-10">
+        {/* Brand Title with New Typography */}
+        <div className="mb-8">
+          <h1 className="text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary to-purple-300 mb-4 tracking-tighter leading-none" data-testid="brand-title">
+            b2bluntz
+          </h1>
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-transparent mx-auto"></div>
+        </div>
         
-        {/* Mysterious Tagline */}
-        <p className="text-xl md:text-3xl text-muted-foreground mb-8 font-light tracking-wide" data-testid="tagline">
-          Something extraordinary is <span className="text-primary font-semibold">growing</span>...
-        </p>
+        {/* Enhanced Tagline */}
+        <div className="mb-12">
+          <p className="text-2xl md:text-4xl text-foreground font-medium mb-4 tracking-wide" data-testid="tagline">
+            Something <span className="text-primary font-bold italic">extraordinary</span> is growing...
+          </p>
+          <p className="text-lg md:text-xl text-muted-foreground font-light max-w-3xl mx-auto leading-relaxed">
+            Premium cannabis experiences that transcend the ordinary. Join the evolution.
+          </p>
+        </div>
         
-        {/* Coming Soon Badge */}
-        <div className="inline-block bg-card border border-border rounded-full px-8 py-4 mb-12" data-testid="coming-soon-badge">
-          <span className="text-primary font-semibold text-lg tracking-widest">COMING SOON</span>
+        {/* Modern Coming Soon Badge */}
+        <div className="mb-16" data-testid="coming-soon-badge">
+          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-primary/20 to-primary/10 backdrop-blur-sm border border-primary/30 rounded-2xl px-8 py-4">
+            <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
+            <span className="text-primary font-bold text-xl tracking-widest">COMING SOON</span>
+            <div className="w-3 h-3 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+          </div>
         </div>
 
-        {/* Teaser Text */}
-        <div className="max-w-2xl mx-auto mb-16">
-          <p className="text-muted-foreground text-lg leading-relaxed" data-testid="teaser-text">
-            Premium cannabis experiences await. Be among the first to discover what lies beyond the ordinary.
-          </p>
+        {/* Feature Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="bg-card/50 backdrop-blur border border-border/50 rounded-xl p-6 hover:border-primary/50 transition-all duration-300">
+            <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
+              <div className="w-6 h-6 bg-primary rounded-full"></div>
+            </div>
+            <h3 className="text-primary font-semibold mb-2">Premium Quality</h3>
+            <p className="text-muted-foreground text-sm">Curated experiences beyond expectations</p>
+          </div>
+          
+          <div className="bg-card/50 backdrop-blur border border-border/50 rounded-xl p-6 hover:border-primary/50 transition-all duration-300">
+            <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
+              <div className="w-6 h-6 bg-primary rounded-full"></div>
+            </div>
+            <h3 className="text-primary font-semibold mb-2">Exclusive Access</h3>
+            <p className="text-muted-foreground text-sm">Limited availability for true connoisseurs</p>
+          </div>
+          
+          <div className="bg-card/50 backdrop-blur border border-border/50 rounded-xl p-6 hover:border-primary/50 transition-all duration-300">
+            <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
+              <div className="w-6 h-6 bg-primary rounded-full"></div>
+            </div>
+            <h3 className="text-primary font-semibold mb-2">Community</h3>
+            <p className="text-muted-foreground text-sm">Connect with like-minded enthusiasts</p>
+          </div>
         </div>
       </div>
     </section>

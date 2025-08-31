@@ -27,12 +27,22 @@ export default function HeroSection() {
         </div>
         
         {/* Modern Coming Soon Badge */}
-        <div className="mb-16 animate-fade-in-up" style={{ animationDelay: '0.9s' }} data-testid="coming-soon-badge">
+        <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.9s' }} data-testid="coming-soon-badge">
           <div className="inline-flex items-center gap-3 bg-gradient-to-r from-primary/20 to-primary/10 backdrop-blur-sm border border-primary/30 rounded-2xl px-8 py-4 hover:scale-105 transition-all duration-300 animate-float-slow">
             <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
             <span className="text-primary font-bold text-xl tracking-widest">COMING SOON</span>
             <div className="w-3 h-3 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
           </div>
+        </div>
+
+        {/* Bot Dashboard Link */}
+        <div className="mb-16 animate-fade-in-up" style={{ animationDelay: '1.1s' }}>
+          <a href="/bot" className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25" data-testid="link-bot-dashboard">
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 2v2H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-2V2h-2v2H10V2H8zm2 6c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm4 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1z" fill="currentColor"/>
+            </svg>
+            Social Media Bot Dashboard
+          </a>
         </div>
 
         {/* Feature Grid */}

@@ -1,8 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
-import { telegramBotService } from "./telegram-bot";
-import { postScheduler } from "./scheduler";
 import { setupAuth } from "./auth";
 
 const app = express();
@@ -42,12 +40,6 @@ app.use((req, res, next) => {
 (async () => {
   // Setup authentication
   setupAuth(app);
-  
-  // Initialize Telegram bot
-  await telegramBotService.initialize();
-  
-  // Initialize post scheduler
-  await postScheduler.initializeScheduler();
   
   const server = await registerRoutes(app);
 

@@ -35,6 +35,21 @@ export default function HeroSection() {
           </div>
         </div>
 
+        {/* Story Bot Access */}
+        <div className="mb-16 animate-fade-in-up" style={{ animationDelay: '1.1s' }}>
+          <a href="/stories" className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 border border-purple-400/20" data-testid="link-story-bot">
+            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 12c0 1.657 1.343 3 3 3s3-1.343 3-3-1.343-3-3-3-3 1.343-3 3z" fill="currentColor"/>
+              <path d="M12 1l3 3-3 3-3-3 3-3zm0 15l3 3-3 3-3-3 3-3zm9-4l-3-3 3-3 3 3-3 3zm-15 0l-3-3 3-3 3 3-3 3z" fill="currentColor"/>
+            </svg>
+            Launch Story Bot
+            <div className="w-2 h-2 bg-white/60 rounded-full animate-pulse"></div>
+          </a>
+          <p className="text-muted-foreground text-sm mt-3 animate-fade-in" style={{ animationDelay: '1.3s' }}>
+            Post to Instagram & Snapchat stories simultaneously
+          </p>
+        </div>
+
         {/* Feature Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           <div className="bg-card/50 backdrop-blur border border-border/50 rounded-xl p-6 hover:border-primary/50 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/20 transition-all duration-500 animate-slide-in-left" style={{ animationDelay: '1.2s' }}>
